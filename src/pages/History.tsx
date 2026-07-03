@@ -150,6 +150,12 @@ const History = () => {
                 Архивные материалы
               </Link>
             </Button>
+            <Button asChild size="lg" variant="outline">
+              <Link to="/departments">
+                <Icon name="Building2" size={18} className="mr-2" />
+                Отделения сегодня
+              </Link>
+            </Button>
           </div>
         </div>
       </section>

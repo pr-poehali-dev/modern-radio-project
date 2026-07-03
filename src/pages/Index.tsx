@@ -1,6 +1,5 @@
 import { Navbar } from "@/components/Navbar"
 import { Hero7 } from "@/components/Hero7"
-import Departments from "@/components/Departments"
 
 const Index = () => {
   return (
@@ -18,7 +17,6 @@ const Index = () => {
         <Navbar />
         <main className="lg:mx-12">
           <Hero7 />
-          <Departments />
         </main>
       </div>
     </div>
