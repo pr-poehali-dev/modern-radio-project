@@ -3,27 +3,9 @@ import { Link } from "react-router-dom"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import Icon from "@/components/ui/icon"
+import { doctors as allDoctors } from "@/data/doctors"
 
-const doctors = [
-  {
-    name: "Иван Петрович Абрамов",
-    years: "Главный врач, 1930–1945",
-    photo: "https://cdn.poehali.dev/projects/e6baf20d-3f0f-44ab-a0b3-f567d9bbd523/files/2d42fc93-03b4-4276-9ee4-d58a2961eecc.jpg",
-    bio: "Один из первых врачей, приехавших в Ненецкий округ по распределению. Организовал первый стационар и боролся с эпидемиями в тундре, добираясь до стойбищ оленеводов на упряжках.",
-  },
-  {
-    name: "Мария Николаевна Тайбарей",
-    years: "Главный врач, 1945–1968",
-    photo: "https://cdn.poehali.dev/projects/e6baf20d-3f0f-44ab-a0b3-f567d9bbd523/files/d890b4ed-9461-4c6f-9cdb-25f4be593bc3.jpg",
-    bio: "Возглавила больницу в послевоенные годы. При ней открылось родильное и детское отделения, а окружная медицина впервые получила рентгеновский кабинет.",
-  },
-  {
-    name: "Сергей Александрович Выучейский",
-    years: "Главный врач, 1968–1990",
-    photo: "https://cdn.poehali.dev/projects/e6baf20d-3f0f-44ab-a0b3-f567d9bbd523/files/cb976842-686d-49fd-baf6-398a39c5aa14.jpg",
-    bio: "При нём построено новое здание окружной больницы, создана санитарная авиация для отдалённых посёлков округа, что спасло сотни жизней в тундре.",
-  },
-]
+const doctors = allDoctors.slice(0, 3)
 
 const milestones = [
   { year: "1929", text: "Основана первая амбулатория в Ненецком округе" },
@@ -127,25 +109,47 @@ const History = () => {
           <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
             Люди, которые десятилетиями возглавляли медицину округа и определяли её развитие
           </p>
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-8 mb-10">
             {doctors.map((doc, i) => (
               <motion.div
-                key={doc.name}
+                key={doc.id}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: i * 0.15 }}
               >
-                <Card className="h-full overflow-hidden">
-                  <img src={doc.photo} alt={doc.name} className="w-full h-64 object-cover" />
-                  <CardContent className="pt-6">
-                    <h3 className="font-bold text-lg mb-1">{doc.name}</h3>
-                    <p className="text-sm text-indigo-600 font-medium mb-3">{doc.years}</p>
-                    <p className="text-sm text-muted-foreground">{doc.bio}</p>
-                  </CardContent>
-                </Card>
+                <Link to={`/doctors/${doc.id}`}>
+                  <Card className="h-full overflow-hidden hover:shadow-lg transition-shadow cursor-pointer group">
+                    <div className="overflow-hidden">
+                      <img
+                        src={doc.photo}
+                        alt={doc.name}
+                        className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
+                      />
+                    </div>
+                    <CardContent className="pt-6">
+                      <h3 className="font-bold text-lg mb-1">{doc.name}</h3>
+                      <p className="text-sm text-indigo-600 font-medium mb-3">{doc.years}</p>
+                      <p className="text-sm text-muted-foreground">{doc.shortBio}</p>
+                    </CardContent>
+                  </Card>
+                </Link>
               </motion.div>
             ))}
+          </div>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button asChild size="lg">
+              <Link to="/doctors">
+                Все 39 врачей округа
+                <Icon name="ArrowRight" size={18} className="ml-2" />
+              </Link>
+            </Button>
+            <Button asChild size="lg" variant="outline">
+              <Link to="/archive">
+                <Icon name="Archive" size={18} className="mr-2" />
+                Архивные материалы
+              </Link>
+            </Button>
           </div>
         </div>
       </section>
