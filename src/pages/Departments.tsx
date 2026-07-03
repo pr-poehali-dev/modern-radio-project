@@ -4,46 +4,69 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import Icon from "@/components/ui/icon"
 
-const departments = [
+interface Dept {
+  icon: string
+  name: string
+  description: string
+}
+
+interface Category {
+  title: string
+  items: Dept[]
+}
+
+const categories: Category[] = [
   {
-    icon: "HeartPulse",
-    name: "Приёмное отделение",
-    description: "Круглосуточный приём экстренных и плановых пациентов, первичная диагностика и маршрутизация.",
+    title: "Стационарные отделения",
+    items: [
+      { icon: "Brain", name: "Психиатрическое отделение", description: "Стационарная помощь пациентам с психическими расстройствами." },
+      { icon: "FlaskConical", name: "Патологоанатомическое отделение", description: "Патоморфологическая диагностика и экспертиза." },
+      { icon: "Stethoscope", name: "Терапевтическое отделение", description: "Лечение и наблюдение пациентов с заболеваниями внутренних органов." },
+      { icon: "HeartPulse", name: "Первично-сосудистое отделение", description: "Помощь пациентам с острыми сосудистыми заболеваниями." },
+      { icon: "Syringe", name: "Отделение анестезиологии-реанимации", description: "Интенсивная терапия и анестезиологическое сопровождение операций." },
+      { icon: "Flower2", name: "Гинекологическое отделение", description: "Диагностика и лечение женских заболеваний." },
+      { icon: "Baby", name: "Родильное отделение", description: "Родовспоможение и наблюдение за роженицами." },
+      { icon: "Smile", name: "Детское отделение", description: "Стационарное лечение детей всех возрастов." },
+      { icon: "ShieldAlert", name: "Инфекционное отделение", description: "Лечение пациентов с инфекционными заболеваниями." },
+      { icon: "Droplet", name: "Трансфузиологическое отделение", description: "Организация переливания крови и её компонентов." },
+      { icon: "MapPin", name: "Нижне-Пешская участковая больница", description: "Медицинская помощь жителям посёлка Нижняя Пёша и округи." },
+    ],
   },
   {
-    icon: "Baby",
-    name: "Родильное отделение",
-    description: "Современное родовспоможение, ведение беременности и наблюдение за новорождёнными.",
+    title: "Поликлиническая служба",
+    items: [
+      { icon: "Building2", name: "Поликлиника", description: "Амбулаторный приём взрослого населения округа." },
+      { icon: "Building2", name: "Детская поликлиника", description: "Амбулаторное наблюдение и приём детей." },
+      { icon: "HeartHandshake", name: "Центр медицинской профилактики / Центр здоровья", description: "Профилактические осмотры и формирование здорового образа жизни." },
+    ],
   },
   {
-    icon: "Stethoscope",
-    name: "Терапевтическое отделение",
-    description: "Диагностика и лечение внутренних заболеваний, диспансерное наблюдение взрослого населения.",
+    title: "Диагностические службы",
+    items: [
+      { icon: "Microscope", name: "Клинико-диагностическая лаборатория", description: "Лабораторные исследования крови, мочи и других биоматериалов." },
+      { icon: "Search", name: "Эндоскопическое отделение", description: "Эндоскопические исследования и диагностика." },
+      { icon: "Activity", name: "Отделение функциональной диагностики", description: "ЭКГ и другие функциональные исследования организма." },
+      { icon: "Radiation", name: "Рентгенологическое отделение", description: "Рентгенодиагностика и снимки для постановки диагноза." },
+      { icon: "Waves", name: "Отделение ультразвуковой диагностики", description: "УЗИ-исследования внутренних органов и систем." },
+      { icon: "Zap", name: "Физиотерапевтическое отделение", description: "Физиотерапевтические процедуры и реабилитация." },
+    ],
   },
   {
-    icon: "Scissors",
-    name: "Хирургическое отделение",
-    description: "Плановые и экстренные операции, современное операционное оборудование и реанимационная поддержка.",
+    title: "Специализированные кабинеты и службы",
+    items: [
+      { icon: "ShieldPlus", name: "Кабинет по профилактике инфекционных заболеваний и СПИДа", description: "Профилактика, консультирование и диагностика ВИЧ-инфекции." },
+      { icon: "Brain", name: "Кабинет врача-психиатра-нарколога", description: "Консультации и лечение по профилю психиатрии-наркологии." },
+      { icon: "UserRound", name: "Кабинет участкового врача-психиатра", description: "Амбулаторное наблюдение пациентов психиатрического профиля." },
+      { icon: "Scale", name: "Отделение судебно-психиатрической экспертизы", description: "Проведение судебно-психиатрических экспертиз." },
+      { icon: "Video", name: "Кабинет телемедицины", description: "Дистанционные консультации с врачами других медицинских центров." },
+      { icon: "Dumbbell", name: "Отделение спортивной медицины", description: "Медицинское сопровождение спортсменов и физкультурников." },
+    ],
   },
   {
-    icon: "Baby",
-    name: "Педиатрическое отделение",
-    description: "Медицинская помощь детям от рождения до совершеннолетия, профилактика и диспансеризация.",
-  },
-  {
-    icon: "Plane",
-    name: "Санитарная авиация",
-    description: "Экстренная эвакуация и оказание помощи жителям отдалённых посёлков и стойбищ округа.",
-  },
-  {
-    icon: "Microscope",
-    name: "Клинико-диагностическая лаборатория",
-    description: "Современные лабораторные исследования крови, биохимии и других анализов для точной диагностики.",
-  },
-  {
-    icon: "Radiation",
-    name: "Отделение лучевой диагностики",
-    description: "Рентген, УЗИ и компьютерная томография для быстрой и точной постановки диагноза.",
+    title: "Экстренная помощь",
+    items: [
+      { icon: "Siren", name: "Отделение скорой медицинской помощи", description: "Круглосуточный выезд бригад скорой помощи по округу." },
+    ],
   },
 ]
 
@@ -75,34 +98,49 @@ const Departments = () => {
             Отделения больницы сегодня
           </motion.h1>
           <motion.p
-            className="text-center text-muted-foreground max-w-2xl mx-auto mb-12"
+            className="text-center text-muted-foreground max-w-2xl mx-auto mb-16"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
           >
-            Современная Ненецкая окружная больница объединяет несколько отделений, обеспечивающих
-            полный цикл медицинской помощи жителям округа
+            Современная Ненецкая окружная больница объединяет стационар, поликлинику и
+            специализированные службы, обеспечивающие полный цикл медицинской помощи жителям округа
           </motion.p>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {departments.map((dept, i) => (
-              <motion.div
-                key={dept.name}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: (i % 4) * 0.1 }}
-              >
-                <Card className="h-full hover:shadow-lg transition-shadow">
-                  <CardContent className="pt-6 flex flex-col gap-3">
-                    <div className="size-12 rounded-xl bg-indigo-100 flex items-center justify-center">
-                      <Icon name={dept.icon} size={24} className="text-indigo-600" />
-                    </div>
-                    <h3 className="font-bold text-base">{dept.name}</h3>
-                    <p className="text-sm text-muted-foreground">{dept.description}</p>
-                  </CardContent>
-                </Card>
-              </motion.div>
+          <div className="flex flex-col gap-16">
+            {categories.map((category, ci) => (
+              <div key={category.title}>
+                <motion.h2
+                  className="text-xl lg:text-2xl font-bold font-heading mb-6"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5 }}
+                >
+                  {category.title}
+                </motion.h2>
+                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {category.items.map((dept, i) => (
+                    <motion.div
+                      key={dept.name}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: (i % 3) * 0.1 }}
+                    >
+                      <Card className="h-full hover:shadow-lg transition-shadow">
+                        <CardContent className="pt-6 flex flex-col gap-3">
+                          <div className="size-12 rounded-xl bg-indigo-100 flex items-center justify-center">
+                            <Icon name={dept.icon} fallback="Building2" size={24} className="text-indigo-600" />
+                          </div>
+                          <h3 className="font-bold text-base">{dept.name}</h3>
+                          <p className="text-sm text-muted-foreground">{dept.description}</p>
+                        </CardContent>
+                      </Card>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
             ))}
           </div>
         </div>
