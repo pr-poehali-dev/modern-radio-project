@@ -22,15 +22,15 @@ interface Hero7Props {
 }
 
 const Hero7 = ({
-  heading = "Премиум шаблоны для продуктивности",
-  description = "Стильные профессиональные шаблоны для повышения продуктивности и оптимизации рабочего процесса. Готовы к использованию, легко настраиваются.",
+  heading = "История медицины на Севере",
+  description = "Образовательный проект о том, как зарождалось и развивалось здравоохранение в Ненецком автономном округе. Малоизвестные факты, судьбы врачей и путь медицины сквозь суровую Арктику.",
   button = {
-    text: "Смотреть шаблоны",
+    text: "Начать изучение",
     url: "#",
   },
   reviews = {
-    count: 500,
-    rating: 4.9,
+    count: 120,
+    rating: 5.0,
     avatars: [
       {
         src: "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/avatar-1.webp",
@@ -121,7 +121,7 @@ const Hero7 = ({
               ))}
               <span className="mr-1 font-semibold">{reviews.rating?.toFixed(1)}</span>
             </div>
-            <p className="text-muted-foreground text-left font-medium">{reviews.count}+ отзывов</p>
+            <p className="text-muted-foreground text-left font-medium">{reviews.count}+ исторических фактов</p>
           </div>
         </motion.div>
       </div>
