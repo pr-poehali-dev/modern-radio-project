@@ -156,6 +156,12 @@ const History = () => {
                 Отделения сегодня
               </Link>
             </Button>
+            <Button asChild size="lg" variant="outline">
+              <Link to="/sources">
+                <Icon name="BookOpen" size={18} className="mr-2" />
+                Источники информации
+              </Link>
+            </Button>
           </div>
         </div>
       </section>
